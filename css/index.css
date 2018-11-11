@@ -44,15 +44,15 @@ html, body {
   color: #bac9d8;
 }
 .info {
-  padding-left: 20px;
+  padding: 20px;
 }
 .info-label {
-  margin-bottom: 5px;
+  margin: 0;
   font-size: 0.9rem;
   color: #bac9d8;
 }
 .info-detail {
-  margin-top: 0;
+  margin: 0;
   font-size: 0.9rem;
   color: #9fbcd8;
 }
@@ -135,24 +135,26 @@ html, body {
     grid-template-rows: 30% 70%;
     grid-template-columns: 100%;
   }
-  .image-responsive {
-    max-width: 150px;
-    height: auto;
-  }
-  .profile-container {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 30% 70%;
-    align-items: center;
+  .sidebar {
+    grid-template-rows: 50px 25px auto;
   }
   .name {
     font-size: 2rem;
     padding-bottom: 0;
   }
   .info {
-    padding: 20px;
+    padding: 0 20px;
+  }
+  .info-label {
+    display: inline-block;
+  }
+  .info-detail {
+    display: inline-block;
   }
   .info p {
     margin: 10 0 0 0;
+  }
+  .desktop {
+    display: none;
   }
 }

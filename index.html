@@ -1,0 +1,104 @@
+<!DOCTYPE html5>
+<html>
+  <head>
+    <title>Gurvir Cheema | Full Stack Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css"></head>
+
+    <script type="text/javascript">
+      var TxtType = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 500;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+      };
+
+      TxtType.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+
+        if (this.isDeleting) {
+        this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+        this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+        var that = this;
+        var delta = 200 - Math.random() * 100;
+
+        if (this.isDeleting) { delta /= 2; }
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+        delta = this.period;
+        this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+        this.isDeleting = false;
+        this.loopNum++;
+        delta = 100;
+        }
+
+        setTimeout(function() {
+        that.tick();
+        }, delta);
+      };
+
+      window.onload = function() {
+        var elements = document.getElementsByClassName('typewrite');
+        for (var i=0; i<elements.length; i++) {
+            var toRotate = elements[i].getAttribute('data-type');
+            var period = elements[i].getAttribute('data-period');
+            if (toRotate) {
+              new TxtType(elements[i], JSON.parse(toRotate), period);
+            }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+        document.body.appendChild(css);
+      };
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="name">Gurvir Cheema</div>
+        <div class="job-title">Full Stack Ruby Developer</div>
+        <div class="info-badge">Personal Info</div>
+        <div class="info">
+          <p class="info-label">Location</p>
+          <p class="info-detail">
+            Lower Mainland<br>
+            British Columbia, Canada
+          </p>
+          <p class="info-label">Phone</p>
+          <p class="info-detail">604-751-4440</p>
+          <p class="info-label">E-mail</p>
+          <p class="info-detail"><a href="mailto:gurvircheema@hotmail.com">gurvircheema@hotmail.com</a></p>
+          <p class="info-label">WWW</p>
+          <p class="info-detail"><a href="http://www.gurvircheema.ca/" target="_blank">gurvircheema.ca</a></p>
+          <p class="info-label">LinkedIn</p>
+          <p class="info-detail"><a href="https://www.linkedin.com/in/gurvir-cheema/" target="_blank">linkedin.com/in/gurvir-cheema</a></p>
+          <p class="info-label">Github</p>
+          <p class="info-detail"><a href="https://github.com/gurvircheema" target="_blank">github.com/gurvircheema</a></p>
+        </div>
+      </div>
+      <div class="main-content">
+        <div>
+          <h1>
+            <a href="" class="typewrite" data-period="1000" data-type='[ "Hi, I am Gurvir Cheema.", "I am Ruby on Rails Developer.", "I Love Front End Design.", "I Love to Develop." ]'>
+              <span class="wrap"></span>
+            </a>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
